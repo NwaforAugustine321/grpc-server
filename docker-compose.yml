@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+
+ envoy:
+   container_name: grpc-envoy
+   build: ./envoy
+   networks:
+      - frontend
+   
+ server:
+   container_name: grpc-server
+   build: .
+   ports:
+       - "4000:4000"
+   networks:
+      - frontend
+   
+
+ react-app:
+    container_name: react
+    build: ./grpc-client
+    ports:
+       - "3000:3000"
+    networks:
+      - frontend
+    
+      
+networks:
+  frontend:
+     driver: bridge
+     
+ 
+     
+  
+
+   
+  

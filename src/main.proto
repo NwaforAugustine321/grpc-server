@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+
+
+message News  {
+string id = 1;
+string title = 2;
+string body = 3;
+string newsImage = 4;
+}
+
+
+message Response  {
+repeated News data = 1;
+}
+
+message Request  {}
+
+message RequestParams {
+   string id = 1;
+}
+
+message EditRequest {
+     RequestParams params = 1;
+}
+
+message EditResponse {
+     string message = 1;
+}
+
+message VidoeResponse {
+     string video = 1;
+}
+
+service NewServices  {
+    rpc getAllNews(Request) returns (Response) {};
+    rpc addNews(News) returns (News) {};
+    rpc editNews(EditRequest) returns (EditResponse) {};
+    rpc streamNewVideos(Request) returns (stream VidoeResponse) {};
+}
+
+
